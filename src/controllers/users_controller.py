@@ -198,3 +198,27 @@ class AllUserAdminView(Resource):
 
         user_schema = UserSchema(exclude=admin_exclude, many=True)
         return user_schema.dump(admin)
+
+
+# Endpoint to search for a user in the database - ONLY ADMIN CAN ACTION
+@api.route('search/')
+class UserSearch(Resource):
+    @api.expect(user_parser)
+    @token_required
+    @permission_required
+    def get(self):
+        "search for a user in the database"
+        args = user_parser.parse_args()
+        user_schema = UserSchema(exclude=admin_exclude, many=True)
+        query = '%{}%'.format(args.get("username").strip("'"))
+
+        # The query below is used to search for a user in the database with their username. The filter method filters the username column of the Users table
+        user = User.query.filter(User.username.contains(query)).all()
+
+        if not user:
+            error_response['message'] = "This user does not exist"
+            return error_response, 404
+
+        success_response['message'] = 'User successfully fetched'
+        success_response['data'] = user_schema.dump(user)
+        return success_response, 200
