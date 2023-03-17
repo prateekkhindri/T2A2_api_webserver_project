@@ -9,7 +9,7 @@ from src.utils.constants import EXCLUDED_FIELDS
 from src.models.Brand import Brand
 from src.utils.responses import success_response, error_response
 
-api = Namespace('brand', description='brand related operations')
+api = Namespace('brand', description='Brand Related Operations')
 
 brand_model = api.model('Brand', {
     'name': fields.String(required=True, description='Brand name'),

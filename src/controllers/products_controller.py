@@ -5,7 +5,7 @@ from src.models.Product import Product
 from src.utils.constants import EXCLUDED_FIELDS
 
 
-api = Namespace('products', description='product related operations')
+api = Namespace('products', description='Product Related Operations')
 
 
 search_parser = api.parser()

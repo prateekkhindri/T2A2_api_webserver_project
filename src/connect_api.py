@@ -1,6 +1,9 @@
 from flask_restx import Api
 from src.controllers.auth_controller import api as auth
 from src.controllers.users_controller import api as user
+from src.controllers.products_controller import api as product
+from src.controllers.brands_controller import api as brand
+from src.controllers.categories_controller import api as category
 
 
 authorizations = {
@@ -24,5 +27,8 @@ api = Api(
 def connect_blueprint(app):
     api.add_namespace(auth, path="/auth/")
     api.add_namespace(user, path="/user/")
+    api.add_namespace(product, path="/product/")
+    api.add_namespace(brand, path="/brand/")
+    api.add_namespace(category, path="/category/")
 
     api.init_app(app)

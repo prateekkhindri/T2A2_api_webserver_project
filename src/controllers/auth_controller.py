@@ -12,7 +12,7 @@ from src.extension import bcrypt
 from sqlalchemy.exc import IntegrityError
 
 
-api = Namespace('auth', description='auth related operations')
+api = Namespace('auth', description='Auth Related Operations')
 
 login_model = api.model("login-model", login_schema)
 reset_model = api.model("reset-model", reset_schema)
