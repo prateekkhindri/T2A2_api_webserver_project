@@ -11,7 +11,7 @@ from src.utils.responses import success_response, error_response
 from src.extension import session
 
 
-api = Namespace('address', description='address related operations')
+api = Namespace('address', description='Address Related Operations')
 address_create_model = api.model("address-create-model", address_create)
 address_update_model = api.model("address-update-model", address_update)
 
