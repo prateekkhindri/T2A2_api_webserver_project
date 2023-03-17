@@ -1,5 +1,6 @@
 from flask_restx import Api
 from src.controllers.auth_controller import api as auth
+from src.controllers.users_controller import api as user
 
 
 authorizations = {
@@ -22,5 +23,6 @@ api = Api(
 
 def connect_blueprint(app):
     api.add_namespace(auth, path="/auth/")
+    api.add_namespace(user, path="/user/")
 
     api.init_app(app)
