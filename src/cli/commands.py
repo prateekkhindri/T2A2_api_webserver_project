@@ -35,3 +35,9 @@ def admin_db():
 
     db.session.add(new_admin)
     db.session.commit()
+
+
+@db_commands.cli.command("drop")
+def drop():
+    print("Dropping all tables...")
+    db.drop_all()
