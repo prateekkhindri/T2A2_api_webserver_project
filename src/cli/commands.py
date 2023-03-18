@@ -181,6 +181,19 @@ def seed_db():
         cartitem1.save()
 
 
+@db_commands.cli.command('clear')
+def clear():
+    print("Clearing all tables...")
+    db.session.query(CartItem).delete()
+    db.session.query(Cart).delete()
+    db.session.query(Address).delete()
+    db.session.query(Product).delete()
+    db.session.query(Category).delete()
+    db.session.query(Brand).delete()
+    db.session.query(User).delete()
+    db.session.commit()
+
+
 @db_commands.cli.command("drop")
 def drop():
     print("Dropping all tables...")
