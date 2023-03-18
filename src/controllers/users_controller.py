@@ -46,6 +46,7 @@ admin_exclude = ['created_at', 'updated_at', "password"]
 # Endpoint to GET a users profile (seller or buyer) by their username
 @api.route('<string:username>/')
 class UserView(Resource):
+    @token_required
     def get(self, username):
 
         # The query below is used to retrieve a user's data from the database based on their username
@@ -68,6 +69,7 @@ class UserView(Resource):
         request_data = request.get_json()
 
         user = User.find_by_id(request_data.get("id"))
+
         if not user:
             error_response['message'] = 'User does not exist'
             return error_response, 400
