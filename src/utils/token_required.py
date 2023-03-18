@@ -23,11 +23,8 @@ def token_required(f):
         if 'Authorization' in request.headers:
             token = request.headers['Authorization']
 
-            if request.path == '/auth/logout/':
-                decoded_token = None
-
-            elif token in BlOCK_LIST:
-                error_response['message'] = 'Token is expired'
+            if token in BlOCK_LIST:
+                error_response['message'] = 'The token has expired, please login again'
                 return error_response, 401
 
         if not token:
