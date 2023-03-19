@@ -7,10 +7,8 @@ class AddressValidators:
 
     # Validates the address data
     @classmethod
-    def validate(cls, data: dict, is_update=False):
+    def validate(cls, data: dict):
         required_fields = ['street_address', 'suburb', 'state', 'postcode']
-        if is_update:
-            required_fields.remove('default')
 
         regex = {
             'street_address': r'^\d{1,5}\s[a-zA-Z0-9\s\.,-]+$',
