@@ -950,6 +950,8 @@ _Object-relational mapping (ORM)_ is a programming approach that streamlines the
 
 # R6: An ERD for your app
 
+![Sneaker Connect ERD](./docs/sneaker_connect.png)
+
 # R7: Detail any third party services that your app will use
 
 ### **Flask**
