@@ -85,8 +85,6 @@ class CartView(Resource):
             cart_item.update(request_data)
             product.update({'quantity': updated_quantity})
         else:
-            request_data['user_id'] = user_id
-            request_data['seller_id'] = product.seller_id
             new_cart_item = CartItem(**request_data)
             new_cart_item.save()
             new_quantity = product.quantity - request_data.get('quantity')

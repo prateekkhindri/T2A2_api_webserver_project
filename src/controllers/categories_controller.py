@@ -74,7 +74,7 @@ class SingleCategoryView(Resource):
             error_response['message'] = 'Category not found'
             return error_response, 404
 
-        success_response['message'] = 'Category successfully fetched'
+        success_response['message'] = f'Category {category["name"]} successfully fetched'
         success_response['data'] = {
             'category': category
         }
