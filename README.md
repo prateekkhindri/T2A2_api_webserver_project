@@ -1,5 +1,100 @@
 # Prateek Khindri's T2A2 API Webserver Project - Sneaker Connect 2 Sided Marketplace
 
+# **Installation Instructions**
+
+**Connect to a PostgreSQL database from the Flask application by executing the following command:**
+
+```SQL
+psql
+```
+
+**Creating the database:**
+
+```bash
+CREATE DATABASE sneaker_connect_db;
+```
+
+**Connecting to the database:**
+
+```bash
+\c sneaker_connect_db
+```
+
+**Create a user and set a temporary password by executing:**
+
+```bash
+CREATE USER api_dev WITH PASSWORD 'password123';
+```
+
+**Grant all priviliges:**
+
+```bash
+GRANT ALL PRIVILEGES ON DATABASE sneaker_connect_db TO api_dev;
+```
+
+**Open another WSL command line and execute the following commands:**
+
+**To create and activate a virtual environment:**
+
+```bash
+
+python3 -m venv ./venv
+
+source venv/bin/activate
+
+```
+
+**Installing required dependencies:**
+
+```bash
+pip3 install -r requirements.txt
+```
+
+**Rename the .env.sample to .env and set the variables below**
+
+```
+SECRET_KEY
+
+API_KEY
+
+SQLALCHEMY_DATABASE_URI
+
+RESTX_VALIDATE
+```
+
+**Create and seed the database by executing the commands below**
+
+```bash
+flask db-cli create
+flask db-cli seed
+```
+
+**Execute the command below to clear all tables**
+
+```bash
+flask db-cli clear
+```
+
+**Execute the command below to drop all tables**
+
+```bash
+flask db-cli drop
+```
+
+**Execute to command below and follow the command line prompts to create an admin user**
+
+```bash
+flask db-cli admin
+```
+
+**Execute the command below to run the flask application**
+
+```bash
+flask run
+```
+
+**This should allow you to open 127.0.0.1:5000/ on your browser or through [Postman](https://www.postman.com/).**
+
 # R1: Identification of the problem you are trying to solve by building this particular app
 
 As in other areas of the world, the sneaker market in Australia has experienced tremendous growth in recent years, driven by factors such as the advent of athleisure, the rising importance of personal style, and the expansion of sneaker culture.
