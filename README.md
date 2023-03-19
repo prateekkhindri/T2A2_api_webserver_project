@@ -1004,6 +1004,82 @@ _Object-relational mapping (ORM)_ is a programming approach that streamlines the
 
 # R8: Describe your projects models in terms of the relationships they have with each other
 
+### **User Model**
+
+- The users table stores the user data such as their name, email, password, username, phone number and two Boolean columns (is_admin & is_seller) to distinguish if a user is a seller, admin or a buyer
+
+- This table is connected to other tables in the database like products, addresses and carts
+
+![User Model](./docs/user_model.png)
+
+### **Product Model**
+
+- The products table stores information about the name of a listed product, its description, price, discount price, available quantity and rating
+
+- This table is connected to other tables in the database like the `cart_items`
+
+- Foreign Keys
+
+  - `seller_id`: Listed product associated with the seller
+
+  - `category_id`: Listed product belongs to which category
+
+  - `brand_id`: Listed product belongs to which brand
+
+![Product Model](./docs/product_model.png)
+
+### **Category Model**
+
+- The categories table stores information such as the name and description of a specific category
+
+- This table is connected to other tables in the database like the products
+
+![Category Model](./docs/category_model.png)
+
+### **Brand Model**
+
+- The brands table stores information such as the name and description of a specific brand
+
+- This table is connected to other tables in the database like the products
+
+![Brand Model](./docs/brand_model.png)
+
+### **Cart Model**
+
+- The carts table stores information such as the `id` and `user_id`
+
+- This table is connected to other tables in the database like the cart_items
+
+- Foreign Keys
+
+  - `user_id`: An existing cart belongs to which user
+
+![Cart Model](./docs/cart_model.png)
+
+### **CartItem Model**
+
+- The cart_items table stores information such as the `id`, `cart_id`, `product_id` and quantity
+
+- This table is a `joining table` between the carts and the products table
+
+- Foreign Keys
+
+  - `product_id`: To identify which product is part of a specific cart item
+
+  - `cart_id`: To identify that the cart item belongs to which cart
+
+![CartItem Model](./docs/cart_item_model.png)
+
+### **Address Model**
+
+- The addresses table stores information such as street_address, suburb, state and postcode for a particular user
+
+- Foreign Keys
+
+  - `user_id`: To identify that the address belongs to which user
+
+![Address Model](./docs/address_model.png)
+
 # R9: Discuss the database relations to be implemented in your application
 
 ### **Users - Products**
