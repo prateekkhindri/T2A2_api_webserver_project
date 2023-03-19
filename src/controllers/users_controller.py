@@ -131,7 +131,7 @@ class PromoteAdminView(Resource):
 
         user_schema = UserSchema(exclude=admin_exclude)
         updated_user = user_schema.dump(user)
-        success_response['message'] = f'User {updated_user["first_name"] + " " + updated_user["last_name"]} has been promoted to admin'
+        success_response['message'] = f'User {updated_user["first_name"] + " " + updated_user["last_name"]} has been promoted to admin successfully'
         success_response['data'] = {
             'user': updated_user
         }
@@ -207,30 +207,6 @@ class AllUserAdminView(Resource):
 
         user_schema = UserSchema(exclude=admin_exclude, many=True)
         return user_schema.dump(admin)
-
-
-# Endpoint to search for a user in the database - ONLY ADMIN CAN ACTION
-@api.route('search/')
-class UserSearch(Resource):
-    @api.expect(user_parser)
-    @token_required
-    @permission_required
-    def get(self):
-        "search for a user in the database"
-        args = user_parser.parse_args()
-        user_schema = UserSchema(exclude=admin_exclude, many=True)
-        query = '%{}%'.format(args.get("username").strip("'"))
-
-        # The query below is used to search for a user in the database with their username. The filter method filters the username column of the Users table
-        user = User.query.filter(User.username.contains(query)).all()
-
-        if not user:
-            error_response['message'] = "This user does not exist"
-            return error_response, 404
-
-        success_response['message'] = 'User successfully fetched'
-        success_response['data'] = user_schema.dump(user)
-        return success_response, 200
 
 
 # Endpoint to get all products listed by a seller

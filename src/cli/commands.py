@@ -123,7 +123,8 @@ def seed_db():
         brand1.save()
 
     users = list(User.query.all())
-    users = random.sample(users, random.randint(1, len(users)-1))
+    users = users if len(users) == 1 else random.sample(
+        users, random.randint(1, len(users)-1))
 
     for _ in users:
         address1 = Address(
@@ -138,7 +139,8 @@ def seed_db():
         address1.save()
 
     buyers = list(User.query.filter_by(is_seller=False, is_admin=False))
-    buyers = random.sample(buyers, random.randint(1, len(buyers)-1))
+    buyers = buyers if len(buyers) == 1 else random.sample(
+        buyers, random.randint(1, len(buyers)-1))
 
     for buyer in buyers:
         cart1 = Cart(user_id=buyer.id)
@@ -167,13 +169,14 @@ def seed_db():
 
     products = list(Product.query.all())
     carts = list(Cart.query.all())
-    carts = random.sample(carts, random.randint(1, len(carts)-1))
+    carts = carts if len(carts) == 1 else random.sample(
+        carts, random.randint(1, len(carts)-1))
 
     for _ in carts:
         product = random.choice(products)
         cartitem1 = CartItem(
-            user_id=random.choice(buyers).id,
-            seller_id=random.choice(sellers).id,
+            # user_id=random.choice(buyers).id,
+            # seller_id=random.choice(sellers).id,
             cart_id=random.choice(carts).id,
             product_id=product.id,
             quantity=random.randint(1, product.quantity),

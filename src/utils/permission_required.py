@@ -17,6 +17,10 @@ def permission_required(f):
         user_schema = UserSchema()
         user_data = user_schema.dump(current_user)
 
+        if not current_user:
+            error_response['message'] = 'Token is not valid'
+            return error_response, 401
+
         if not user_data['is_admin']:
             message = 'Permission denied. You are not authorized to perform this action'
             error_response['message'] = message
@@ -35,7 +39,10 @@ def permission_seller(f):
         current_user = User.find_by_id(decoded_token['user']['id'])
         user_schema = UserSchema()
         user_data = user_schema.dump(current_user)
-        print(user_data)
+
+        if not current_user:
+            error_response['message'] = 'Token is not valid'
+            return error_response, 401
 
         if not user_data['is_seller']:
             message = 'Permission denied. You are not a seller to perform this task'
