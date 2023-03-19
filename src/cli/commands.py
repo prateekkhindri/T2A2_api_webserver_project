@@ -105,7 +105,7 @@ def seed_db():
 
     for category in CATEGORY_LIST:
         category1 = Category(
-            name=category,
+            name=category.lower(),
             description="""lorem ipsum Eius mod esse veniam ut enim fugiat. 
                             Ullamco aute Lorem ut amet voluptate est reprehenderit dolor.
                             Fugiat officia excepteur Lorem minim."""
@@ -114,7 +114,7 @@ def seed_db():
 
     for brand in BRAND_LIST:
         brand1 = Brand(
-            name=brand,
+            name=brand.lower(),
             description="""lorem ipsum Eius mod esse veniam ut enim fugiat. 
                             Ullamco aute Lorem ut amet voluptate est reprehenderit dolor.
                             Fugiat officia excepteur Lorem minim."""
@@ -153,7 +153,7 @@ def seed_db():
     for product in PRODUCT_LIST:
         price = random.randint(30, 80)
         product1 = Product(
-            name=product,
+            name=product.lower(),
             description="""lorem ipsum Eius mod esse veniam ut enim fugiat. 
                             Ullamco aute Lorem ut amet voluptate est reprehenderit dolor.
                             Fugiat officia excepteur Lorem minim.""",

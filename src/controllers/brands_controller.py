@@ -17,11 +17,11 @@ brand_model = api.model('Brand', {
 })
 
 
-# Endpoint to create the brand you have to be a seller
+# Endpoint to create the brand you have to be an admin
 @api.route("")
 class BrandView(Resource):
     @token_required
-    @permission_seller
+    @permission_required
     @api.expect(brand_model)
     def post(self):
 
@@ -75,7 +75,7 @@ class SingleBrandResource(Resource):
             error_response['message'] = 'Brand not found'
             return error_response, 404
 
-        success_response['message'] = 'Brand successfully fetched'
+        success_response['message'] = f'Brand {brand["name"]} successfully fetched'
         success_response['data'] = {
             'brand': brand
         }
