@@ -1006,6 +1006,42 @@ _Object-relational mapping (ORM)_ is a programming approach that streamlines the
 
 # R9: Discuss the database relations to be implemented in your application
 
+### **Users - Products**
+
+- The Users table has a one-to-many relationship with the products table
+
+- This is because a single user can have many products however a single product can only belong to one user
+
+### **Users - Addresses**
+
+- The User table has a one-to-many relationship with the addresses table
+
+- This is because a single user can have zero, one or multiple addresses, however a one address must only belong to one user
+
+### **Users - Carts**
+
+- The Users table has a one-to-one relationship with the carts table, as a single user can only have one cart
+
+### **Categories - Products**
+
+- The Categories table has a one-to-many relationship with the products table
+
+- This is because a single category can have zero, one or multiple products, however a product must belong to atleast one category
+
+### **Brands - Products**
+
+- The Brands table has a one-to-many relationship with the products table
+
+- This is because a single brand can have zero, one or multiple products, however a product must belong to at least one brand
+
+### **Carts - Products**
+
+- The Carts table has a many-to-many relationship with the products table
+
+- This is because a cart can contain many different items and a product can be a part of many different carts
+
+- This is why a `joining table` of `cart_items` is useful to keep track of the cart and cart items
+
 # R10: Describe the way tasks are allocated and tracked in your project
 
 The [Trello](https://trello.com/) project management platform was used to manage the application's implementation plan and design. I was successful at planning, prioritising, and organising my activities into digestible portions.
